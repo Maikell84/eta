@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -53,6 +53,18 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
+
+
+
+
+
+
+  gem 'capistrano',         require: false
+  gem 'capistrano-rbenv',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+
 end
 
 group :test do
