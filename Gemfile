@@ -29,9 +29,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'whenever', require: false
 gem 'nokogiri'
-gem "haml-rails", "~> 2.0"
-
-
+gem 'haml-rails', "~> 2.0"
+gem 'simple_form'
+gem 'devise'
+gem 'active_attr'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -53,18 +54,11 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
-
-
-
-
-
-
-  gem 'capistrano',         require: false
-  gem 'capistrano-rbenv',     require: false
-  gem 'capistrano-rails',   require: false
+  gem 'capistrano', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
-
+  gem 'capistrano3-puma', require: false
 end
 
 group :test do

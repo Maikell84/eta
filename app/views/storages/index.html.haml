@@ -1,0 +1,21 @@
+%h1 Listing storages
+
+%table.table
+  %thead
+    %tr
+      %th Datum
+      %th Wert
+      %th Quelle
+      %th
+
+  %tbody
+    - @storages.each do |storage|
+      %tr
+        %td= storage.created_at
+        %td= storage.value
+        %td= storage.source
+        %td!= "#{link_to('Show', storage)} #{link_to('Edit', edit_storage_path(storage))} #{link_to('Destroy', storage, method: :delete, data: { confirm: 'Are you sure?' })}"
+
+%br
+
+= link_to 'New Storage', new_storage_path
