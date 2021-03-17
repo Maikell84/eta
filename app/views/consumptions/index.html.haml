@@ -1,0 +1,25 @@
+%h1 Listing consumptions
+
+%table.table
+  %thead
+    %tr
+      %th Datum
+      %th Wert
+      %th Quelle
+      %th
+
+  %tbody
+    - @consumptions.each do |consumption|
+      %tr
+      %tr
+        %td= consumption.created_at
+        %td= consumption.value
+        %td= consumption.source
+        %td
+          = link_to('', consumption, class: 'fas fa-info-circle')
+          = link_to('', edit_storage_path(consumption), class: 'far fa-edit')
+          = link_to('', consumption, class: 'far fa-trash-alt', method: :delete, data: { confirm: 'Are you sure?' })
+
+%br
+
+= link_to 'New Consumption', new_consumption_path

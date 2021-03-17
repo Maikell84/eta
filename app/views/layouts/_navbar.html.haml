@@ -1,0 +1,17 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container-fluid
+    %a.navbar-brand{href: '/'} Home
+    %button.navbar-toggler{"aria-controls" => "navbarNavDarkDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDarkDropdown", "data-bs-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarNavDarkDropdown.collapse.navbar-collapse
+      %ul.navbar-nav
+        %li.nav-item.dropdown
+          %a#navbarDarkDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+            Gehe zu
+          %ul.dropdown-menu.dropdown-menu-dark{"aria-labelledby" => "navbarDarkDropdownMenuLink"}
+            %li
+              %a.dropdown-item{href: users_path} Benutzer
+            %li
+              %a.dropdown-item{href: storages_path} Lager
+            %li
+              %a.dropdown-item{href: consumptions_path} Verbrauch

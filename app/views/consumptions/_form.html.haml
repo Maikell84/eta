@@ -1,0 +1,10 @@
+= form_for @consumption do |f|
+  - if @consumption.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@consumption.errors.count, "error")} prohibited this consumption from being saved:"
+      %ul
+        - @consumption.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'

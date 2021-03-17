@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <%= render :partial =>'layouts/navbar' %>
+    <div class="container">
+      <%= render :partial =>'layouts/flash', :locals => {:flash => flash} %>
+      <%= yield %>
+    </div>
   </body>
 </html>

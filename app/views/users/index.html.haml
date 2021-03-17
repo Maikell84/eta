@@ -1,0 +1,20 @@
+%h1 Benutzerliste
+
+%table.table
+  %thead
+    %tr
+      %th E-Mail
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.email
+        %td
+          = link_to('', user, class: 'fas fa-info-circle')
+          = link_to('', edit_user_path(user), class: 'far fa-edit')
+          = link_to('', user, class: 'far fa-trash-alt', method: :delete, data: { confirm: 'Are you sure?' })
+
+%br
+
+-# = link_to 'Neuer Benutzer', new_user_path

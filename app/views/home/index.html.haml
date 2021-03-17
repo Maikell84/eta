@@ -1,3 +1,35 @@
-%h1 Home
-=link_to 'Users', storages_path
-=link_to 'Lager', storages_path
+.container
+  .row
+    .col-sm
+
+      .card.h-100{:style => "width: 18rem;"}
+        =image_tag("users.png", alt: "Edit Entry", class: 'card-img-top')
+        .card-body
+          %p.card-text
+            =link_to users_path do
+              %button.btn.btn-primary Benutzer
+
+    .col-sm
+      .card.h-100{:style => "width: 18rem;"}
+        =image_tag("storage.png",  alt: "Lager", class: 'card-img-top')
+        .card-body
+          %p.card-text
+            =link_to storages_path do
+              %button.btn.btn-primary Lager
+    .col-sm
+      .card.h-100{:style => "width: 18rem;"}
+        =image_tag("consumption2.png", alt: "Verbrauch", class: 'card-img-top')
+        .card-body
+          %p.card-text
+            =link_to consumptions_path do
+              %button.btn.btn-primary Verbrauch
+
+  %br
+  .row
+    .col-sm
+      .card{:style => "width: 18rem;"}
+        .card-body
+          %p= "Gesamtverbrauch: #{@total_consumption_now}kg"
+          %p= "Verbrauch seit gestern: #{@consumption_since_yesterday}kg"
+
+

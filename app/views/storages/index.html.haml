@@ -1,4 +1,4 @@
-%h1 Listing storages
+%h1 Lagerstände
 
 %table.table
   %thead
@@ -14,7 +14,10 @@
         %td= storage.created_at
         %td= storage.value
         %td= storage.source
-        %td!= "#{link_to('Show', storage)} #{link_to('Edit', edit_storage_path(storage))} #{link_to('Destroy', storage, method: :delete, data: { confirm: 'Are you sure?' })}"
+        %td
+          = link_to('', storage, class: 'fas fa-info-circle')
+          = link_to('', edit_storage_path(storage), class: 'far fa-edit')
+          = link_to('', storage, class: 'far fa-trash-alt', method: :delete, data: { confirm: 'Are you sure?' })
 
 %br
 
