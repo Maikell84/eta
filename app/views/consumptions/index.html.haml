@@ -17,7 +17,7 @@
         %td= consumption.source
         %td
           = link_to('', consumption, class: 'fas fa-info-circle')
-          = link_to('', edit_storage_path(consumption), class: 'far fa-edit')
+          = link_to('', edit_consumption_path(consumption), class: 'far fa-edit')
           = link_to('', consumption, class: 'far fa-trash-alt', method: :delete, data: { confirm: 'Are you sure?' })
 
 %br

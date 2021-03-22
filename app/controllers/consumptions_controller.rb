@@ -1,5 +1,6 @@
 class ConsumptionsController < ApplicationController
   before_action :set_consumption, only: %i[ show edit update destroy ]
+  before_action :build_form, only: [:edit, :update]
   before_action :authenticate_user!
 
   # GET /consumptions or /consumptions.json
@@ -58,13 +59,18 @@ class ConsumptionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_consumption
-      @consumption = Consumption.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def consumption_params
-      params.fetch(:consumption, {})
-    end
+  def build_form
+    @form = Consumptions::ConumptionForm.new(@consumption, params[:form])
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_consumption
+    @consumption = Consumption.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def consumption_params
+    params.fetch(:consumption, {})
+  end
 end

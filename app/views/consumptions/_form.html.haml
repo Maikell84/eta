@@ -1,4 +1,7 @@
-= form_for @consumption do |f|
+= simple_form_for @consumption do |f|
+  = f.input :value
+  = f.input :source
+  = f.input :created_at
   - if @consumption.errors.any?
     #error_explanation
       %h2= "#{pluralize(@consumption.errors.count, "error")} prohibited this consumption from being saved:"

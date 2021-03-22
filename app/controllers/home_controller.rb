@@ -6,7 +6,10 @@ class HomeController < ApplicationController
     uri = URI('http://192.168.1.23:8080/user/var/40/10021/0/0/12016')
     response = make_request(uri)
     @total_consumption_now = parse_request(response)
-    @consumption_since_yesterday = Consumption.last.value.to_i - @total_consumption_now.to_i
+    @consumption_yesterday = Consumption.where(created_at: 1.day.ago.beginning_of_day..1.day.ago.end_of_day)&.last&.value&.to_i
+    return unless @consumption_yesterday.present?
+
+    @consumption_since_yesterday = @total_consumption_now.to_i - @consumption_yesterday
   end
 
   private
