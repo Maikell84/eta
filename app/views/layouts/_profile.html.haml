@@ -1,0 +1,18 @@
+%span
+  %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+    = current_user.email
+  %ul.dropdown-menu.dropdown-menu-right
+    %li
+      = link_to('Profil', edit_user_path(current_user), class: 'dropdown-item')
+    %li
+      = link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item')
+
+:css
+  .dropdown-menu {
+    left: auto !important;
+  }
+
+  .dropdown-menu-right {
+    right: 0;
+    left: auto;
+  }

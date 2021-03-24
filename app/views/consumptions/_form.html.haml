@@ -1,4 +1,4 @@
-= simple_form_for @consumption do |f|
+= simple_form_for @form, as: :form, url: consumption_path, method: :patch do |f|
   = f.input :value
   = f.input :source
   = f.input :created_at

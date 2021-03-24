@@ -1,54 +1,36 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: %i[ show edit update destroy ]
+  before_action :build_form, only: [:edit, :update, :new, :create]
   before_action :authenticate_user!
 
-  # GET /storages or /storages.json
   def index
     @storages = Storage.order('created_at ASC')
   end
 
-  # GET /storages/1 or /storages/1.json
-  def show
-  end
-
-  # GET /storages/new
   def new
     @storage = Storage.new
   end
 
-  # GET /storages/1/edit
-  def edit
-  end
-
-  # POST /storages or /storages.json
   def create
-    @storage = Storage.new(storage_params)
-
     respond_to do |format|
-      if @storage.save
-        format.html { redirect_to @storage, notice: "Storage was successfully created." }
-        format.json { render :show, status: :created, location: @storage }
+      if @form.submit
+        format.html { redirect_to @storage, notice: "Lagereintrag erstellt." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @storage.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /storages/1 or /storages/1.json
   def update
     respond_to do |format|
-      if @storage.update(storage_params)
-        format.html { redirect_to @storage, notice: "Storage was successfully updated." }
-        format.json { render :show, status: :ok, location: @storage }
+      if @form.submit
+        format.html { redirect_to @storage, notice: "Lagereintrag aktualisiert." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @storage.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /storages/1 or /storages/1.json
   def destroy
     @storage.destroy
     respond_to do |format|
@@ -58,13 +40,13 @@ class StoragesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_storage
-      @storage = Storage.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def storage_params
-      params.fetch(:storage, {})
-    end
+  def build_form
+    @form = Storages::StoragesForm.new(@storage, params[:form])
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_consumption
+    @storage = Storage.find(params[:id])
+  end
 end
