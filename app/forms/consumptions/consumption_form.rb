@@ -13,4 +13,8 @@ class Consumptions::ConsumptionForm < Form
   def process
     @consumption.save!
   end
+
+  def new_record?
+    @consumption.new_record?
+  end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :statistics
   resources :home
 
   devise_for :users

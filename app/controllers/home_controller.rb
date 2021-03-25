@@ -9,10 +9,23 @@ class HomeController < ApplicationController
     @consumption_yesterday = Consumption.where(created_at: 1.day.ago.beginning_of_day..1.day.ago.end_of_day)&.last&.value&.to_i
     return unless @consumption_yesterday.present?
 
+    statistic
     @consumption_since_yesterday = @total_consumption_now.to_i - @consumption_yesterday
   end
 
   private
+
+  def statistic
+    grouped_consumptions = Consumption.where('created_at >= ?', 7.days.ago.beginning_of_day).group_by{|x| x.created_at.strftime("%Y-%m-%d")}
+
+    @consumptions = []
+    7.downto(0).each do |day|
+      consumption_day = day.days.ago.beginning_of_day
+      values_of_the_day = grouped_consumptions.dig(consumption_day.strftime("%Y-%m-%d")).pluck(:value)
+      consumption_for_day = values_of_the_day.max - values_of_the_day.min
+      @consumptions << OpenStruct.new(weekday: I18n.l(consumption_day, format: '%A'), day: consumption_day.strftime("%d.%m.%Y"), value: "#{consumption_for_day}kg")
+    end
+  end
 
   # TODO DRY
   def make_request(uri)

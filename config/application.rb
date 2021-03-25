@@ -10,6 +10,10 @@ module Eta
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.time_zone = "Berlin"
+    config.i18n.default_locale = :de
+    config.i18n.available_locales = %i[de en]
+    config.i18n.fallbacks = [:en]
 
     # Configuration for the application, engines, and railties goes here.
     #

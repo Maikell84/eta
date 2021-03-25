@@ -34,6 +34,8 @@ gem 'haml-rails', "~> 2.0"
 gem 'simple_form'
 gem 'devise'
 gem 'active_attr'
+gem 'chartkick'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

@@ -1,4 +1,6 @@
-= simple_form_for @form, as: :form, url: consumption_path, method: :patch do |f|
+- url = @form.new_record? ? new_consumption_path : consumption_path
+- http_method = @form.new_record? ? :post : :patch
+= simple_form_for @form, as: :form, url: url, method: http_method do |f|
   = f.input :value
   = f.input :source
   = f.input :created_at
