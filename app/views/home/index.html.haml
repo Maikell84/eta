@@ -1,28 +1,27 @@
 .container
   .row
     .col-sm
-
-      .card.h-100{:style => "width: 18rem;"}
-        =image_tag("users.png", alt: "Edit Entry", class: 'card-img-top')
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .fas.fa-chart-line.fa-10x
         .card-body
           %p.card-text
-            =link_to users_path do
-              %button.btn.btn-primary Benutzer
+            .d-grid.gap-2
+              = bootstrap_button_to 'Statistiken', statistics_path, button_classes: 'btn-primary'
 
     .col-sm
-      .card.h-100{:style => "width: 18rem;"}
-        =image_tag("storage.png",  alt: "Lager", class: 'card-img-top')
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .fas.fa-warehouse.fa-10x
         .card-body
           %p.card-text
-            =link_to storages_path do
-              %button.btn.btn-primary Lager
+            .d-grid.gap-2
+              = bootstrap_button_to 'Lager', storages_path, button_classes: 'btn-primary'
     .col-sm
-      .card.h-100{:style => "width: 18rem;"}
-        =image_tag("consumption2.png", alt: "Verbrauch", class: 'card-img-top')
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .fas.fa-fire-alt.fa-10x
         .card-body
           %p.card-text
-            =link_to consumptions_path do
-              %button.btn.btn-primary Verbrauch
+            .d-grid.gap-2
+              = bootstrap_button_to 'Verbrauch', consumptions_path, button_classes: 'btn-primary'
 
   %br
   .row
@@ -36,17 +35,19 @@
             #{@total_consumption_now}kg
           %h5.card-title
             Wochenansicht
-          %p.card-text
-            %table.table.table-bordered
-              %tr
-                - @consumptions.each do |c|
-                  %td
-                    = c.day
-                    %br
-                    = c.weekday
-              %tr
-                - @consumptions.each do |c|
-                  %td= c.value
+          %div.card-text
+            .d-none.d-sm-block
+              %table.table.table-bordered
+                %tr
+                  - @consumptions.each do |c|
+                    %td
+                      = c.day
+                      %br
+                      = c.weekday
+                %tr
+                  - @consumptions.each do |c|
+                    %td
+                      =c.value
             %br
 
           %p.card-text
