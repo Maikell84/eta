@@ -1,69 +1,49 @@
 class StatisticsController < ApplicationController
   before_action :set_statistic, only: %i[ show edit update destroy ]
 
-  # GET /statistics or /statistics.json
   def index
-    @statistics = Statistic.all
+    @grouped_consumptions = Consumption.where('created_at >= ?', 31.days.ago.beginning_of_day).where('created_at > ?', Date.parse('2021-03-19')).group_by{|x| x.created_at.strftime("%Y-%m-%d")}
+
+    consumption_weekly
+    consumption_monthly
+    consumption_monthly_cw
   end
 
-  # GET /statistics/1 or /statistics/1.json
-  def show
-  end
-
-  # GET /statistics/new
-  def new
-    @statistic = Statistic.new
-  end
-
-  # GET /statistics/1/edit
-  def edit
-  end
-
-  # POST /statistics or /statistics.json
-  def create
-    @statistic = Statistic.new(statistic_params)
-
-    respond_to do |format|
-      if @statistic.save
-        format.html { redirect_to @statistic, notice: "Statistic was successfully created." }
-        format.json { render :show, status: :created, location: @statistic }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @statistic.errors, status: :unprocessable_entity }
-      end
+  def consumption_weekly
+    @consumptions_weekly = []
+    7.downto(0).each do |day|
+      consumption_day = day.days.ago.beginning_of_day
+      values_of_the_day = @grouped_consumptions.dig(consumption_day.strftime("%Y-%m-%d")).pluck(:value)
+      consumption_for_day = values_of_the_day.max - values_of_the_day.min
+      @consumptions_weekly << OpenStruct.new(weekday: I18n.l(consumption_day, format: '%A'), day: consumption_day.strftime("%d.%m.%Y"), value: "#{consumption_for_day}kg")
     end
   end
 
-  # PATCH/PUT /statistics/1 or /statistics/1.json
-  def update
-    respond_to do |format|
-      if @statistic.update(statistic_params)
-        format.html { redirect_to @statistic, notice: "Statistic was successfully updated." }
-        format.json { render :show, status: :ok, location: @statistic }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @statistic.errors, status: :unprocessable_entity }
-      end
+  def consumption_monthly
+    @consumptions_monthly = []
+    31.downto(0).each do |day|
+      consumption_day = day.days.ago.beginning_of_day
+      values_of_the_day = @grouped_consumptions.dig(consumption_day.strftime("%Y-%m-%d"))&.pluck(:value)
+      next unless values_of_the_day
+
+      consumption_for_day = values_of_the_day.max - values_of_the_day.min
+      @consumptions_monthly << OpenStruct.new(weekday: I18n.l(consumption_day, format: '%A'), day: consumption_day.strftime("%d.%m.%Y"), value: "#{consumption_for_day}kg")
     end
   end
 
-  # DELETE /statistics/1 or /statistics/1.json
-  def destroy
-    @statistic.destroy
-    respond_to do |format|
-      format.html { redirect_to statistics_url, notice: "Statistic was successfully destroyed." }
-      format.json { head :no_content }
+  def consumption_monthly_cw
+    @consumptions_monthly_cw = []
+    53.downto(0).each do |week|
+      consumption_week_start = week.weeks.ago.beginning_of_week
+      consumption_week_end = week.weeks.ago.end_of_week
+      values_of_the_week_min = @grouped_consumptions.dig(consumption_week_start.strftime("%Y-%m-%d"))&.pluck(:value)
+      values_of_the_week_max = @grouped_consumptions.dig(consumption_week_end.strftime("%Y-%m-%d"))&.pluck(:value)
+      next unless values_of_the_week_min && values_of_the_week_max
+
+      consumption_for_cw = values_of_the_week_max.max - values_of_the_week_min.min
+      @consumptions_monthly_cw << OpenStruct.new(weekday: "KW #{I18n.l(consumption_week_start, format: '%U')}", day: "KW #{consumption_week_start.strftime("%U")}", value: "#{consumption_for_cw}kg")
     end
+
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_statistic
-      @statistic = Statistic.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def statistic_params
-      params.fetch(:statistic, {})
-    end
 end

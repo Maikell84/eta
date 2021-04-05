@@ -1,19 +1,15 @@
-%h1 Listing statistics
+%h1 Statistiken
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
-
-  %tbody
-    - @statistics.each do |statistic|
-      %tr
-        %td= link_to 'Show', statistic
-        %td= link_to 'Edit', edit_statistic_path(statistic)
-        %td= link_to 'Destroy', statistic, method: :delete, data: { confirm: 'Are you sure?' }
+.row
+  %h3 Wochenansicht
+  = column_chart @consumptions_weekly.map{|c| c.to_h}.pluck(:day, :value)
 
 %br
+.row
+  %h3 Monatsansicht (Tag)
+  = column_chart @consumptions_monthly.map{|c| c.to_h}.pluck(:day, :value)
 
-= link_to 'New Statistic', new_statistic_path
+%br
+.row
+  %h3 Monatsansicht (KW)
+  = column_chart @consumptions_monthly_cw.map{|c| c.to_h}.pluck(:day, :value)
