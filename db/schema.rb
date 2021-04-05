@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_201223) do
+ActiveRecord::Schema.define(version: 2021_04_05_221915) do
 
   create_table "consumptions", force: :cascade do |t|
     t.integer "value", null: false
@@ -50,6 +50,27 @@ ActiveRecord::Schema.define(version: 2021_03_17_201223) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.decimal "temp", precision: 10, scale: 2
+    t.decimal "feels_like", precision: 10, scale: 2
+    t.decimal "temp_min", precision: 10, scale: 2
+    t.decimal "temp_max", precision: 10, scale: 2
+    t.decimal "humidity", precision: 10, scale: 2
+    t.decimal "pressure", precision: 10, scale: 2
+    t.decimal "wind_speed", precision: 10, scale: 2
+    t.decimal "wind_deg", precision: 10, scale: 2
+    t.decimal "wind_gust", precision: 10, scale: 2
+    t.integer "code"
+    t.string "main"
+    t.string "description"
+    t.string "icon"
+    t.integer "visibility"
+    t.integer "clouds"
+    t.datetime "weather_timestamp"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
