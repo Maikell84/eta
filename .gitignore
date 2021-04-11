@@ -45,5 +45,3 @@ yarn-debug.log*
 .idea/
 *.ipr
 *.iws
-
-/config/credentials/production.key
