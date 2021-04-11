@@ -7,7 +7,7 @@ class WeatherSyncService < SyncService
   end
 
   def initialize
-    @api_key = Rails.application.credentials[:openweathermap][:api_key]
+    @api_key = Rails.application.credentials.dig(:openweathermap)&.dig(:api_key)
   end
 
   def run
