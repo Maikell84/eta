@@ -74,20 +74,10 @@ namespace :deploy do
     end
   end
 
-  desc 'Fix spring'
-  task :regenerate_bins do
-    on roles(:web) do
-      within release_path do
-        execute :bundle, 'install --binstubs'
-      end
-    end
-  end
-
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-  after  :finishing,    :regenerate_bins
 end
 
 # ps aux | grep puma    # Get puma pid
