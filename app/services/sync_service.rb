@@ -4,8 +4,9 @@ class SyncService
 
   protected
 
-  def make_request(uri)
+  def make_request(uri, use_ssl: false)
     http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = use_ssl
     request = Net::HTTP::Get.new(uri.request_uri)
     http.request(request)
   end

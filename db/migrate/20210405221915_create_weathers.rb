@@ -1,6 +1,7 @@
 class CreateWeathers < ActiveRecord::Migration[6.1]
   def change
     create_table :weathers do |t|
+      t.belongs_to :consumption
       t.decimal :temp, precision: 10, scale: 2
       t.decimal :feels_like, precision: 10, scale: 2
       t.decimal :temp_min, precision: 10, scale: 2

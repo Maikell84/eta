@@ -29,6 +29,5 @@ end
 
 every 1.hour do
   runner "ConsumptionSyncService.run"
-  runner "WeatherSyncService.run"
 end
 

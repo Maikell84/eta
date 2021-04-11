@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_04_05_221915) do
   end
 
   create_table "weathers", force: :cascade do |t|
+    t.integer "consumption_id"
     t.decimal "temp", precision: 10, scale: 2
     t.decimal "feels_like", precision: 10, scale: 2
     t.decimal "temp_min", precision: 10, scale: 2
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_04_05_221915) do
     t.datetime "weather_timestamp"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["consumption_id"], name: "index_weathers_on_consumption_id"
   end
 
 end
