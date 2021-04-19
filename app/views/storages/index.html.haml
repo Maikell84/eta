@@ -15,10 +15,10 @@
         %td= storage.value
         %td= storage.source
         %td
-          = link_to('', storage, class: 'fas fa-info-circle')
-          = link_to('', edit_storage_path(storage), class: 'far fa-edit')
-          = link_to('', storage, class: 'far fa-trash-alt', method: :delete, data: { confirm: 'Are you sure?' })
-
+          = icon_link(storage_path(storage), 'fas fa-info-circle')
+          = icon_link(edit_storage_path(storage), 'far fa-edit')
+          = icon_link(storage_path(storage), 'far fa-trash-alt', link_options: { method: :delete, data: { confirm: 'Are you sure?' } })
 %br
 
+!= pagy_bootstrap_nav(@pagy)
 = link_to 'New Storage', new_storage_path

@@ -4,7 +4,7 @@ class StoragesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @storages = Storage.order('created_at ASC')
+    @pagy, @storages = pagy(Storage.all.order(created_at: :desc))
   end
 
   def new

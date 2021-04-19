@@ -4,7 +4,7 @@ class ConsumptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @consumptions = Consumption.all
+    @pagy, @consumptions = pagy(Consumption.all.order(created_at: :desc))
   end
 
   def new
