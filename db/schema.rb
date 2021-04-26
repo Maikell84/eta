@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_221915) do
+ActiveRecord::Schema.define(version: 2021_04_26_204350) do
+
+  create_table "ashes", force: :cascade do |t|
+    t.integer "value", null: false
+    t.string "source", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "consumptions", force: :cascade do |t|
     t.integer "value", null: false

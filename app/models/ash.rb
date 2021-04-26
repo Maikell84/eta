@@ -1,0 +1,2 @@
+class Ash < ApplicationRecord
+end
