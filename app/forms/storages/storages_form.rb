@@ -13,4 +13,8 @@ class Storages::StoragesForm < Form
   def process
     @storage.save!
   end
+
+  def new_record?
+    @storage.new_record?
+  end
 end

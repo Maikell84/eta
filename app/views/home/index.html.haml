@@ -1,38 +1,75 @@
 .container
-  .row
-    .col-sm
-      .card.text-center.h-100{style: "width: 20rem;"}
-        .card-body
-          .fas.fa-chart-line.fa-10x
-          %p.card-text
-            .d-grid.gap-2
-              = bootstrap_button_to 'Statistiken', statistics_path, button_classes: 'btn-primary'
 
-    .col-sm
-      .card.text-center.h-100{style: "width: 20rem;"}
-        .card-body
-          .fas.fa-warehouse.fa-10x
-          %p.card-text
-            .d-grid.gap-2
-              = bootstrap_button_to 'Lager', storages_path, button_classes: 'btn-primary'
-    .col-sm
-      .card.text-center.h-100{style: "width: 20rem;"}
-        .card-body
-          .fas.fa-fire-alt.fa-10x
-          %p.card-text
-            .d-grid.gap-2
-              = bootstrap_button_to 'Verbrauch', consumptions_path, button_classes: 'btn-primary'
+  .card
+    %h5.card-header Navigation
+    .card-body
+      .row
+        .col-sm
+          .card.text-center.h-100{style: "width: 12rem;"}
+            .card-body
+              .fas.fa-tachometer-alt.fa-5x
+              %p.card-text
+                .d-grid.gap-2
+                  = bootstrap_button_to 'Status', states_path, button_classes: 'btn-primary'
+
+        .col-sm
+          .card.text-center.h-100{style: "width: 12rem;"}
+            .card-body
+              .fas.fa-chart-line.fa-5x
+              %p.card-text
+                .d-grid.gap-2
+                  = bootstrap_button_to 'Statistiken', statistics_path, button_classes: 'btn-primary'
+
+        .col-sm
+          .card.text-center.h-100{style: "width: 12rem;"}
+            .card-body
+              .fas.fa-warehouse.fa-5x
+              %p.card-text
+                .d-grid.gap-2
+                  = bootstrap_button_to 'Lager', storages_path, button_classes: 'btn-primary'
+        .col-sm
+          .card.text-center.h-100{style: "width: 12rem;"}
+            .card-body
+              .fas.fa-fire-alt.fa-5x
+              %p.card-text
+                .d-grid.gap-2
+                  = bootstrap_button_to 'Verbrauch', consumptions_path, button_classes: 'btn-primary'
+
+        .col-sm
+          .card.text-center.h-100{style: "width: 12rem;"}
+            .card-body
+              .fas.fa-broom.fa-5x
+              %p.card-text
+                .d-grid.gap-2
+                  = bootstrap_button_to 'Asche', ashes_path, button_classes: 'btn-primary'
 
   %br
   .row
     .col-sm
       .card
-        %h5.card-header Verbrauch
+        %h5.card-header Dashboard
         .card-body
-          %h5.card-title
-            Gesamtverbrauch
-          %p.card-text
-            #{@total_consumption_now}kg
+          .row.mb-3
+            .col-sm
+              %h5.card-title Aschestand
+              %p.card-text
+                #{@current_ash}kg
+            .col-sm
+              %h5.card-title Lagerstand
+              %p.card-text
+                #{@current_storage}kg
+
+
+          .row.mb-3
+            .col-sm
+              %h5.card-title Gesamtverbrauch
+              %p.card-text
+                #{@total_consumption_now}kg
+            .col-sm
+              %h5.card-title Pufferspeicher Ladestand
+              %p.card-text
+                #{@buffer_charge_level}%
+
           %h5.card-title
             Wochenansicht
           %div.card-text

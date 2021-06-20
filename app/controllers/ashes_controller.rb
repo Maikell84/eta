@@ -1,20 +1,20 @@
-class StoragesController < ApplicationController
+class AshesController < ApplicationController
   before_action :set_storage, only: %i[ show edit update destroy ]
   before_action :build_form, only: [:edit, :update, :new, :create]
   before_action :authenticate_user!
 
   def index
-    @pagy, @storages = pagy(Storage.all.order(created_at: :desc))
+    @pagy, @ashes = pagy(Ash.all.order(created_at: :desc))
   end
 
   def new
-    @storage = Storage.new
+    @ash = Ash.new
   end
 
   def create
     respond_to do |format|
       if @form.submit
-        format.html { redirect_to @storage, notice: "Lagereintrag erstellt." }
+        format.html { redirect_to @ash, notice: "Ascheeintrag erstellt." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -24,7 +24,7 @@ class StoragesController < ApplicationController
   def update
     respond_to do |format|
       if @form.submit
-        format.html { redirect_to @storage, notice: "Lagereintrag aktualisiert." }
+        format.html { redirect_to @ash, notice: "Lagereintrag aktualisiert." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -32,9 +32,9 @@ class StoragesController < ApplicationController
   end
 
   def destroy
-    @storage.destroy
+    @ash.destroy
     respond_to do |format|
-      format.html { redirect_to storages_url, notice: "Storage was successfully destroyed." }
+      format.html { redirect_to storages_url, notice: "Ash was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -42,11 +42,11 @@ class StoragesController < ApplicationController
   private
 
   def build_form
-    @form = Storages::StoragesForm.new(@storage, params[:form])
+    @form = Ashes::AshesForm.new(@ash, params[:form])
   end
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_storage
-    @storage = Storage.find(params[:id])
+  def set_ash
+    @ash = Ash.find(params[:id])
   end
 end

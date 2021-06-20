@@ -1,11 +1,6 @@
 %h1 Statistiken
 
 .row
-  %h3 Wochenansicht
-  = column_chart @consumptions_weekly.map{|c| c.to_h}.pluck(:day, :value)
-
-%br
-.row
   %h3 Monatsansicht (Tag)
   = column_chart @consumptions_monthly.map{|c| c.to_h}.pluck(:day, :value)
 

@@ -1,0 +1,45 @@
+%h1 Aktueller Heizungsstatus
+
+.container
+  .row
+    .col-sm
+      .card.text-center{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Aschebox Füllmenge %
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 100, current: @ash.decorate.ash_value_percent, inverted: true, dial_segment_colors: @ash.decorate.dial_segment_colors })
+
+    .col-sm
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Füllmenge kg (Lager)
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 3800, current: @storage.value.to_i, inverted: false })
+
+    .col-sm
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Füllmenge kg (Heizung)
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 30, current: @current_heating_storage.to_i, inverted: false })
+
+    .col-sm
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Pufferspeicher Ladestand %
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 100, current: @current_buffer_charge_level.to_i, inverted: false })
+
+    .col-sm
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Kesseldruck Bar
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 3, current: @current_pressure, segments: 3, dial_segment_colors: ['#FF0000', '#00FF00', '#FF0000'], customSegmentStops: [0, 1.2, 2.5, 3] })
+
+    .col-sm
+      .card.text-center.h-100{style: "width: 20rem;"}
+        .card-body
+          %h5.card-title Aktuelle Leistung
+          %br
+          = react_component("Dial", { dial_name: '', min: 0, max: 100, current: @current_load, segments: 1, dial_segment_colors: ['#CCCCCC']})

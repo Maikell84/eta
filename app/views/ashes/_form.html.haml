@@ -1,0 +1,15 @@
+- url = @form.new_record? ? new_ash_path : ash_path
+- http_method = @form.new_record? ? :post : :patch
+= simple_form_for @form, as: :form, url: url, method: http_method do |f|
+  = f.input :value
+  = f.input :source
+  = f.input :created_at
+  - if @ash.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@ash.errors.count, "error")} prohibited this consumption from being saved:"
+      %ul
+        - @ash.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'

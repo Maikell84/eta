@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :statistics
-  resources :home
-
   devise_for :users
 
   devise_scope :user do
@@ -14,7 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :statistics
+  resources :home, only: [:index]
   resources :storages
   resources :consumptions
   resources :users
+  resources :ashes
+  resources :states, only: [:index]
 end

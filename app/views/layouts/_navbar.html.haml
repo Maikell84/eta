@@ -1,15 +1,21 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
-    %a.navbar-brand{href: '/'} Home
     %button.navbar-toggler{"aria-controls" => "navbarNavDropdown", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNavDropdown", "data-bs-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
+    %a.navbar-brand{href: '/'} Home
 
     #navbarNavDropdown.collapse.navbar-collapse
       %ul.navbar-nav
         %li.nav-item
+          %a.nav-link{href: statistics_path} Status
+        %li.nav-item
+          %a.nav-link{href: statistics_path} Statistiken
+        %li.nav-item
           %a.nav-link{href: storages_path} Lager
         %li.nav-item
           %a.nav-link{href: consumptions_path} Verbrauch
+        %li.nav-item
+          %a.nav-link{href: ashes_path} Asche
         %li.nav-item
           %a.nav-link{href: 'https://www.meineta.at/'} MeinETA
 
