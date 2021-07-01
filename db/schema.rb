@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_204350) do
+ActiveRecord::Schema.define(version: 2021_07_01_212845) do
 
   create_table "ashes", force: :cascade do |t|
     t.integer "value", null: false
+    t.string "source", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "buffers", force: :cascade do |t|
+    t.integer "value"
+    t.integer "sensor_1"
+    t.integer "sensor_2"
+    t.integer "sensor_3"
+    t.integer "sensor_4"
     t.string "source", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,6 +40,13 @@ ActiveRecord::Schema.define(version: 2021_04_26_204350) do
   create_table "storages", force: :cascade do |t|
     t.integer "value", null: false
     t.string "source", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "f_name"
+    t.string "l_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

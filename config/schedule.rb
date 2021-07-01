@@ -13,3 +13,7 @@ every 1.hour do
   runner "AshSyncService.run"
 end
 
+every 30.minutes do
+  runner "BufferSyncService.run"
+end
+
