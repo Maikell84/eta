@@ -34,6 +34,7 @@ gem 'haml-rails', "~> 2.0"
 gem 'simple_form'
 gem 'devise'
 gem 'devise-i18n'
+gem 'cancancan'
 gem 'active_attr'
 gem 'chartkick'
 gem 'pagy'

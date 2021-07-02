@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_212845) do
+ActiveRecord::Schema.define(version: 2021_07_02_185418) do
 
   create_table "ashes", force: :cascade do |t|
     t.integer "value", null: false
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2021_07_01_212845) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "eta_model"
+    t.string "eta_name"
+    t.string "eta_ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "storages", force: :cascade do |t|
     t.integer "value", null: false
     t.string "source", null: false
@@ -49,6 +63,15 @@ ActiveRecord::Schema.define(version: 2021_07_01_212845) do
     t.string "l_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

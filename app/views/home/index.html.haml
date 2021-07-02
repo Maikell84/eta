@@ -1,47 +1,52 @@
 .container
-
   .card
     %h5.card-header Navigation
     .card-body
       .row
-        .col-sm
-          .card.text-center.h-100{style: "width: 12rem;"}
-            .card-body
-              .fas.fa-tachometer-alt.fa-5x
-              %p.card-text
-                .d-grid.gap-2
-                  = bootstrap_button_to 'Status', states_path, button_classes: 'btn-primary'
+        - if can? :read, :state
+          .col-sm
+            .card.text-center.h-100{style: "width: 12rem;"}
+              .card-body
+                .fas.fa-tachometer-alt.fa-5x
+                %p.card-text
+                  .d-grid.gap-2
+                    = bootstrap_button_to 'Status', states_path, button_classes: 'btn-primary'
 
-        .col-sm
-          .card.text-center.h-100{style: "width: 12rem;"}
-            .card-body
-              .fas.fa-chart-line.fa-5x
-              %p.card-text
-                .d-grid.gap-2
-                  = bootstrap_button_to 'Statistiken', statistics_path, button_classes: 'btn-primary'
+        - if can? :read, Statistic
+          .col-sm
+            .card.text-center.h-100{style: "width: 12rem;"}
+              .card-body
+                .fas.fa-chart-line.fa-5x
+                %p.card-text
+                  .d-grid.gap-2
+                    = bootstrap_button_to 'Statistiken', statistics_path, button_classes: 'btn-primary'
 
-        .col-sm
-          .card.text-center.h-100{style: "width: 12rem;"}
-            .card-body
-              .fas.fa-warehouse.fa-5x
-              %p.card-text
-                .d-grid.gap-2
-                  = bootstrap_button_to 'Lager', storages_path, button_classes: 'btn-primary'
-        .col-sm
-          .card.text-center.h-100{style: "width: 12rem;"}
-            .card-body
-              .fas.fa-fire-alt.fa-5x
-              %p.card-text
-                .d-grid.gap-2
-                  = bootstrap_button_to 'Verbrauch', consumptions_path, button_classes: 'btn-primary'
+        - if can? :read, Storage
+          .col-sm
+            .card.text-center.h-100{style: "width: 12rem;"}
+              .card-body
+                .fas.fa-warehouse.fa-5x
+                %p.card-text
+                  .d-grid.gap-2
+                    = bootstrap_button_to 'Lager', storages_path, button_classes: 'btn-primary'
 
-        .col-sm
-          .card.text-center.h-100{style: "width: 12rem;"}
-            .card-body
-              .fas.fa-broom.fa-5x
-              %p.card-text
-                .d-grid.gap-2
-                  = bootstrap_button_to 'Asche', ashes_path, button_classes: 'btn-primary'
+        - if can? :read, Consumption
+          .col-sm
+            .card.text-center.h-100{style: "width: 12rem;"}
+              .card-body
+                .fas.fa-fire-alt.fa-5x
+                %p.card-text
+                  .d-grid.gap-2
+                    = bootstrap_button_to 'Verbrauch', consumptions_path, button_classes: 'btn-primary'
+
+        - if can? :read, Ash
+          .col-sm
+            .card.text-center.h-100{style: "width: 12rem;"}
+              .card-body
+                .fas.fa-broom.fa-5x
+                %p.card-text
+                  .d-grid.gap-2
+                    = bootstrap_button_to 'Asche', ashes_path, button_classes: 'btn-primary'
 
   %br
   .row

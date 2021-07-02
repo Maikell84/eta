@@ -27,7 +27,9 @@ class HomeController < ApplicationController
     @consumptions = []
     7.downto(0).each do |day|
       consumption_day = day.days.ago.beginning_of_day
-      values_of_the_day = grouped_consumptions.dig(consumption_day.strftime("%Y-%m-%d")).pluck(:value)
+      values_of_the_day = grouped_consumptions.dig(consumption_day.strftime("%Y-%m-%d"))&.pluck(:value)
+      return unless values_of_the_day
+
       consumption_for_day = values_of_the_day.max - values_of_the_day.min
       @consumptions << OpenStruct.new(weekday: I18n.l(consumption_day, format: '%A'), day: consumption_day.strftime("%d.%m.%Y"), value: "#{consumption_for_day}kg")
     end
