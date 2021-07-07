@@ -1,3 +1,19 @@
-= link_to 'Edit', edit_consumption_path(@consumption)
+%h1= "Verbrauch - Eintrag #{@consumption.id}"
+
+.row
+  .col
+    %table.table
+      %tr
+        %th Wert
+        %td= "#{@consumption.value} kg"
+      %tr
+        %th Ermittelt am
+        %td= @consumption.created_at
+      %tr
+        %th Ermittelt von
+        %td= @consumption.source
+
+- if can? :edit, @consumption
+  = link_to 'Editieren', edit_consumption_path(@consumption)
 \|
-= link_to 'Back', consumptions_path
+= link_to 'Zurück', consumptions_path

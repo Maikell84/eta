@@ -16,8 +16,10 @@
         %td= storage.source
         %td
           = icon_link(storage_path(storage), 'fas fa-info-circle')
-          = icon_link(edit_storage_path(storage), 'far fa-edit')
-          = icon_link(storage_path(storage), 'far fa-trash-alt', link_options: { method: :delete, data: { confirm: 'Are you sure?' } })
+          - if can? :edit, storage
+            = icon_link(edit_storage_path(storage), 'far fa-edit')
+          - if can? :destroy, storage
+            = icon_link(storage_path(storage), 'far fa-trash-alt', link_options: { method: :delete, data: { confirm: 'Are you sure?' } })
 %br
 
 != pagy_bootstrap_nav(@pagy)

@@ -1,3 +1,19 @@
-= link_to 'Edit', edit_ash_path(@ashes)
+%h1= "Asche - Eintrag #{@ash.id}"
+
+.row
+  .col
+    %table.table
+      %tr
+        %th Wert
+        %td= "#{@ash.value} kg"
+      %tr
+        %th Ermittelt am
+        %td= @ash.created_at
+      %tr
+        %th Ermittelt von
+        %td= @ash.source
+
+- if can? :edit, @ash
+  = link_to 'Editieren', edit_ash_path(@ash)
 \|
-= link_to 'Back', ashes_path
+= link_to 'Zurück', ashes_path

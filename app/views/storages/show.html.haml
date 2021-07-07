@@ -1,3 +1,19 @@
-= link_to 'Edit', edit_storage_path(@storage)
+%h1= "Lagerstand - Eintrag #{@storage.id}"
+
+.row
+  .col
+    %table.table
+      %tr
+        %th Wert
+        %td= "#{@storage.value} kg"
+      %tr
+        %th Ermittelt am
+        %td= @storage.created_at
+      %tr
+        %th Ermittelt von
+        %td= @storage.source
+
+- if can? :edit, @storage
+  = link_to 'Editieren', edit_storage_path(@storage)
 \|
-= link_to 'Back', storages_path
+= link_to 'Zurück', storages_path

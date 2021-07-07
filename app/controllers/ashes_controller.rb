@@ -1,5 +1,5 @@
 class AshesController < ApplicationController
-  before_action :set_storage, only: %i[ show edit update destroy ]
+  before_action :set_ash, only: %i[ show edit update destroy ]
   before_action :build_form, only: [:edit, :update, :new, :create]
 
   def index
