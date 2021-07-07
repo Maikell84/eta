@@ -1,7 +1,6 @@
 class AshesController < ApplicationController
   before_action :set_storage, only: %i[ show edit update destroy ]
   before_action :build_form, only: [:edit, :update, :new, :create]
-  before_action :authenticate_user!
 
   def index
     @pagy, @ashes = pagy(Ash.all.order(created_at: :desc))

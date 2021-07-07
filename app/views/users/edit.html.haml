@@ -1,0 +1,35 @@
+%h1 Profil editieren
+
+= simple_form_for(@form, url: user_path(@user), html: { method: :put }) do |f|
+  .form-inputs
+    = f.input :email, readonly: true, disabled: true
+    = f.input :firstname, label: 'Vorname'
+    = f.input :lastname, label: 'Nachname'
+
+  %p
+  .form-actions
+    = f.button :submit, "Speichern", class: 'btn btn-primary'
+
+%hr
+
+= simple_form_for(@user, url: password_path(@user), html: { method: :put }) do |f|
+  = f.error_notification
+
+  = f.input :reset_password_token, as: :hidden
+  = f.full_error :reset_password_token
+  = f.input :password,
+    label: "Neues Passwort",
+    required: true,
+    autofocus: true,
+    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+    input_html: { autocomplete: "new-password" }
+
+  = f.input :password_confirmation,
+    label: "Neues Passwort bestätigen",
+    required: true,
+    input_html: { autocomplete: "new-password" }
+
+  %p
+
+  .form-actions
+    = f.button :submit, "Passwort ändern", class: 'btn btn-primary'

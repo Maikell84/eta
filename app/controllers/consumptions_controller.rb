@@ -1,7 +1,6 @@
 class ConsumptionsController < ApplicationController
   before_action :set_consumption, only: %i[ show edit update destroy ]
   before_action :build_form, only: [:edit, :update, :new, :create]
-  before_action :authenticate_user!
 
   def index
     @pagy, @consumptions = pagy(Consumption.all.order(created_at: :desc))
